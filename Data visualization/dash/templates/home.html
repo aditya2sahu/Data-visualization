@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+    {% load  static %}
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DashBoard</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=The+Nautigal:wght@700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+    <script src="path/to/chartjs/dist/chart.js"></script>
+    <style>
+ 
+
+nav{
+    background-color: #004c6d;
+    margin-bottom: 50px;
+   border: 1px rgba(0, 0, 0, 0.454) solid;
+   border-radius: 40px;
+}
+ul{
+    height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  
+}
+.sec{
+    padding-right: 10px;
+    font-size: 15px;
+}
+.container{
+    margin: auto;
+    width: 70%;
+    display: flex;
+    justify-content: space-around;
+ 
+}
+#pie,#myChart,#mybar,#Doughnut{
+    padding: 20px;
+    border: 1px rgb(125, 125, 125) solid;
+    border-radius: 10px;
+    box-shadow: 0px 0px 31px #2525259e;
+}
+
+.left{
+    border-top-left-radius: 10px;
+}
+
+
+
+.right{
+    border-top-right-radius: 10px;
+}
+body{
+   
+    font-family: 'Oleo Script', cursive;
+}
+
+
+.pro{
+    height: 65px;
+width: 65px;
+vertical-align: middle;
+border-radius: 50%;
+height:50px; width: 50px; vertical-align: middle;
+}
+
+   .humbar {
+            position: fixed;
+            height: 100%;
+            width: 0%;
+            padding-top: 200px;
+            overflow-x: hidden;
+            top: 0%;
+            left: 0%;
+            transition: 0.5s;
+            background-color: #004c6d;
+            z-index: 2;
+            color: aliceblue;
+
+        }
+
+        .humbar a {
+            text-decoration-style: none;
+            text-decoration: none;
+            color: aliceblue;
+            transition: all 0.5s;
+            display: block;
+            border-top: 0.1px #006691 solid;
+            padding: 15px;
+            font-size: 15px;
+        }
+
+        #main,
+        #header {
+            transition: 00.5s;
+        }
+
+        .humbar a:hover {
+             padding: 15px;
+            font-size: 15px;
+            margin-left: 10px;
+            color: #004c6d;
+            background-color: aliceblue;
+            border-radius: 40px;
+            border-top-right-radius: 0px;
+            border-bottom-right-radius: 0px;
+        }
+        .title{
+            padding-left: 20px;
+        }
+        /* .pagevisitmost{
+            animation: lefttopwala 2s;
+        }
+        @keyframes lefttopwala {
+            0%{
+                position: relative;
+                left: -100;
+                visibility: hidden;
+
+            }   100%{
+                position: relative;
+                left: 0;
+           
+
+            }
+            
+        }
+        .page{
+            animation: leftbottomwala 2s;
+        }
+        .ed{
+            animation: righttoptwala 2s;
+        }
+        .published{
+            animation: rightbottomtwala 2s;
+        } */
+
+
+    </style>
+</head>
+
+<body>
+
+    <div class="sidenav">
+        <div id="icon" class="humbar">
+            <a href="/ " class="first">DashBoard</a>
+            <a href="/me" class="five">Me</a>
+            <a href="/Country" class="sec">Table</a>
+            <a href="" class="six">Logout</a>
+
+        </div>
+    </div>
+    <header id="header" >
+        <nav>
+            <ul>
+                <div id="material"  style="font-family: 'Oleo Script', cursive; font-size: 25px; color: aliceblue;">
+                  
+                    <span  style="padding-right: 20px;" onclick="clicked()" class="material-icons md-24">menu</span>
+                    Company Name
+                </div>
+                <div style="padding-right:20px;">
+                    <span class="sec">
+                            <span style="color:white ;" >{{request.user}}</span>
+                     </span>
+                     <img  src="{% static 'p.png' %}" alt="image" class="pro" >
+                </div>
+               
+            </ul>
+        </nav>
+    </header>
+   
+
+    <main id="main">
+        <div class="container">
+            <div class="pagevisitmost">
+                
+                <canvas id="pie" style="width: 500px;"></canvas>
+            </div>
+            <div class="published">
+              
+                <canvas id="myChart" style="width:500px;"></canvas>
+            </div>
+        </div>
+        <div style="margin-top: 50px;" class="container">
+            <div class="page">
+                <canvas id="mybar" style="width:500px;"></canvas>
+            </div>
+            <div class="ed">    
+                <canvas id="Doughnut" width="500px"></canvas>
+            </div>
+        </div>
+      
+    </main>
+    <footer>
+
+    </footer>
+   <script>
+
+ function clicked() {
+            document.getElementById("icon").style.width = "15%";
+            var t = document.getElementById("material").innerHTML = "<span  style='padding-right: 20px;' onclick='cld()' class='material-icons md-24'>close</span> Company Name "
+            document.getElementById("header").style.marginLeft = "15%";
+            document.getElementById("main").style.marginLeft = "15%";
+        }
+        function cld() {
+            document.getElementById("icon").style.width = "0%";
+            document.getElementById("header").style.marginLeft = "0%";
+            var t = document.getElementById("material").innerHTML = "<span  style='padding-right: 20px;' onclick='clicked()' class='material-icons md-24'>menu</span>  Company Name"
+            document.getElementById("main").style.marginLeft = "0%";
+        }
+
+var year={{years|safe}}
+newyear=year.slice(0,10)
+
+
+var countyear={{countyear|safe}}
+newcountyear=countyear.slice(0,10)
+
+var ctx = document.getElementById('myChart').getContext("2d");
+const gradientbg=ctx.createLinearGradient(0,0,0,400)
+gradientbg.addColorStop(0,"#00b3cf")
+gradientbg.addColorStop(1,"#004c6d")
+
+const myChart = new Chart(ctx, {
+    type: 'line',
+    data: {
+        labels:newyear,
+        datasets: [{
+            label: "Published",
+            data: newcountyear,
+            backgroundColor:gradientbg,
+            fill:true
+        }]
+    },
+    options: {
+        title:{
+            display:true,
+            text:"Most of the Publishing By Year"
+
+        }
+    }
+});
+
+
+
+ var list=({{ finallist|safe }})
+ an=list.slice(0,6)
+
+
+ 
+var piechart=document.getElementById("pie").getContext("2d")
+const mypie = new Chart(piechart,{
+    type:"pie",
+    data:{
+        labels:an,
+          datasets: [{
+            data: {{link|slice:"0:6"}},
+            backgroundColor: [
+           "#004c6d",
+              '#006d90',
+              '#008fb1',
+              '#00b3cf',
+              '#00d9e9',
+              "#00ffff"
+            ],
+            hoverOffset: 4
+          }]
+    },
+    options:{
+        title:{
+            display:true,
+            text:"Most of the Topic"
+
+        }
+        
+    }
+
+  });
+
+  
+
+var b=document.getElementById("mybar").getContext("2d");
+const gbg=b.createLinearGradient(0,0,0,400)
+gbg.addColorStop(0,"#00b3cf")
+gbg.addColorStop(0.5,"#006d90")
+gbg.addColorStop(1,"#004c6d")
+
+var listcountry={{country|safe}};
+newlistcountry=listcountry.slice(0,11);
+
+var listcount={{count|safe}};
+newlistcount=listcount.slice(0,11);
+console.log(newlistcount)
+console.log(newlistcountry)
+
+const country =new Chart(b,{
+    type: 'bar',
+    data:{ labels:newlistcountry ,
+  datasets: [{
+    label: '',
+    data: newlistcount,
+    backgroundColor: [
+    gbg,gbg,gbg,gbg,gbg,gbg,gbg,gbg,gbg,gbg,gbg
+    ],
+    borderColor: [
+    gbg,gbg,gbg,gbg,gbg,gbg,gbg,gbg,gbg,gbg,gbg
+    ],
+    borderWidth: 1
+  }]},
+  options:{
+        title:{
+            display:true,
+            text:"Most of the Publishing By Country"
+
+        }
+        
+    }
+ 
+} ) ;
+
+
+var sourcelist={{sourcelist|safe}};
+newsourcelist=sourcelist.slice(0,6);
+
+var sourcecount={{sourcecount|safe}};
+newsourcecount=sourcecount.slice(0,6);
+
+console.log(newsourcelist)
+console.log(newsourcecount)
+
+var f=document.getElementById("Doughnut").getContext("2d");
+const doughnut=new Chart(f,{
+    type:"doughnut",
+    data:{
+        labels:newsourcelist ,
+  datasets: [{
+    label: 'My First Dataset',
+    data: newsourcecount,
+    backgroundColor: [
+    "#004c6d",
+              '#006d90',
+              '#008fb1',
+              '#00b3cf',
+              '#00d9e9',
+              "#00ffff"
+    ],
+    hoverOffset: 4
+  }]
+},
+options:{
+        title:{
+            display:true,
+            text:"Most of the Source"
+
+
+        }
+        
+    }
+    }) ;
+
+
+
+   </script>
+</body>
+
+</html>

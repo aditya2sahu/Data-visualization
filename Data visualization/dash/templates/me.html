@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+    {% load static %}
+<head>
+    <meta charset="UTF-8">
+    <title>Country</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=The+Nautigal:wght@700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+    <style>
+        body{
+
+    font-family: 'Oleo Script', cursive;
+}
+.pro{
+    height: 65px;
+width: 65px;
+vertical-align: middle;
+border-radius: 50%;
+height:50px; width: 50px; vertical-align: middle;
+}
+
+nav{
+    background-color: #004c6d;
+    margin-bottom: 50px;
+   border: 1px rgba(0, 0, 0, 0.454) solid;
+   border-radius: 40px;
+}
+ul{
+        height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  
+}
+.sec{
+    padding-right: 10px;
+    font-size: 15px;
+}
+
+ .humbar {
+            position: fixed;
+            height: 100%;
+            width: 0%;
+            padding-top: 200px;
+            overflow-x: hidden;
+            top: 0%;
+            left: 0%;
+            transition: 0.5s;
+            background-color: #004c6d;
+            z-index: 2;
+            color: aliceblue;
+
+        }
+
+     .humbar a {
+            text-decoration-style: none;
+            text-decoration: none;
+            color: aliceblue;
+            transition: all 0.5s;
+            display: block;
+            border-top: 0.1px #006691 solid;
+            padding: 15px;
+            font-size: 15px;
+        }
+
+        #main,
+        #header {
+            transition: 00.5s;
+           
+        }
+
+        .humbar a:hover {
+             padding: 15px;
+            font-size: 15px;
+            margin-left: 10px;
+            color: #004c6d;
+            background-color: aliceblue;
+            border-radius: 40px;
+            border-top-right-radius: 0px;
+            border-bottom-right-radius: 0px;
+        }
+        .cont{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+          
+        }
+        .profile{
+           width: 500px;
+           height: 500px;
+           
+          
+            border: 6px #004c6d solid ;
+            border-radius: 50%;
+        }
+        .images{
+            animation: probox;   
+           animation-duration: 1s;
+        }
+        @keyframes probox {
+            0%{
+              margin-left: -1500px;
+              visibility: hidden;
+                
+            }
+            100%{
+                margin-left: 0;
+             
+            }
+        }
+        .name{
+            padding: 10px;
+            border-bottom-left-radius: 17px;
+  border-top-left-radius: 17px;
+  border-bottom-right-radius: 17px;
+  border-top-right-radius: 17px;
+            border: 2px #004c6d solid;
+        }
+
+
+    </style>
+</head>
+<body>
+    
+    <div class="sidenav">
+        <div id="icon" class="humbar">
+            <a href="/ " class="first">DashBoard</a>
+            <a href="" class="five">Me</a>
+            <a href="/Country" class="sec">Table</a>
+            <a href="" class="six">Logout</a>
+
+        </div>
+    </div>
+    <header id="header" >
+        <nav>
+            <ul>
+                <div id="material"  style="font-family: 'Oleo Script', cursive; font-size: 25px; color: aliceblue;">
+                  
+                    <span  style="padding-right: 20px;" onclick="clicked()" class="material-icons md-24">menu</span>
+                    Company Name
+                </div>
+            </ul>
+        </nav>
+    </header>
+    <main id="main">
+        <div class="cont">
+            <div>
+                <div class="images">
+                    <img class="profile"  src="{% static 'p.png' %}" alt="image">
+                </div>
+               
+                <div >
+                   <p style="margin: 0px; padding-left: 10px;color: #5f5f5f;" >UserName</p>
+                  <div class="name"> 
+                    <p style="margin: 0px; padding-left: 20px;" >{{request.user}}</p>
+                  </div> 
+                    
+                </div>
+                <div style="margin-top:10px ;">
+                    <p style="margin: 0px; padding-left: 10px;color: #5f5f5f;" >Email</p>
+                    <div class="name" >
+                        <p style="margin: 0px; padding-left: 20px;" >{{request.user.email}}</p>
+                      </div> 
+                  
+                </div>
+          
+            </div>
+            
+           
+        </div>
+        
+    </main>
+   
+<script>
+ function clicked() {
+            document.getElementById("icon").style.width = "15%";
+            var t = document.getElementById("material").innerHTML = "<span  style='padding-right: 20px;' onclick='cld()' class='material-icons md-24'>close</span> Company Name "
+            document.getElementById("header").style.marginLeft = "15%";
+            document.getElementById("main").style.marginLeft = "15%";
+        }
+        function cld() {
+            document.getElementById("icon").style.width = "0%";
+            document.getElementById("header").style.marginLeft = "0%";
+            var t = document.getElementById("material").innerHTML = "<span  style='padding-right: 20px;' onclick='clicked()' class='material-icons md-24'>menu</span>  Company Name"
+            document.getElementById("main").style.marginLeft = "0%";
+        }
+</script>
+</body>
+</html>

@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+
+<head>
+    <meta charset="UTF-8">
+    <title>Country</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=The+Nautigal:wght@700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+    <script src="path/to/chartjs/dist/chart.js"></script>
+    <style>
+        .btn {
+            /* "#004c6d",
+              '#006d90',
+              '#008fb1',
+              '#00b3cf',
+              '#00d9e9',
+              "#00ffff" */
+
+            box-shadow: 0px 0px 30px #004c6d;
+            background-color: #004c6d;
+            color: wheat;
+            border: 0px;
+            border-radius: 8px;
+            text-decoration: none;
+            padding-left: 30px;
+            padding-right: 30px;
+            padding-top: 10px;
+            padding-bottom: 10px;
+            font-size: 15px;
+        }
+
+
+
+        @keyframes listani {
+
+            0% {
+                position: relative;
+                top: 400px;
+                visibility: hidden;
+            }
+
+            100% {
+                position: relative;
+                top: 0px;
+            }
+
+        }
+
+        .list {
+            margin: auto;
+            width: 70%;
+        }
+
+        th {
+            background-color: #004c6d;
+            height: 50px;
+            color: aliceblue;
+            animation: listani;
+            animation-duration: 0.5s;
+
+        }
+
+        .showtable {
+            animation: listani;
+            animation-duration: 0.5s;
+            box-shadow: 0px 0px 31px #2525259e;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+        }
+
+        table {
+            border-collapse: collapse;
+            /* Optional - if you don't want to have double border where cells touch */
+
+        }
+
+        tr {
+            border-radius: 5px;
+        }
+
+        .maintd {
+            border-top: 1px black solid;
+            border-bottom: 1px black solid;
+            text-align: center;
+            font-size: 15px;
+            height: 50px;
+        }
+
+        body {
+        
+            font-family: 'Oleo Script', cursive;
+        }
+
+        .pro {
+            height: 65px;
+            width: 65px;
+            vertical-align: middle;
+            border-radius: 50%;
+            height: 50px;
+            width: 50px;
+            vertical-align: middle;
+        }
+
+        nav {
+            background-color: #004c6d;
+            margin-bottom: 50px;
+            border: 1px rgba(0, 0, 0, 0.454) solid;
+            border-radius: 40px;
+        }
+
+        ul {
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+        }
+
+        .sec {
+            padding-right: 10px;
+            font-size: 15px;
+        }
+
+        .humbar {
+            position: fixed;
+            height: 100%;
+            width: 0%;
+            padding-top: 200px;
+            overflow-x: hidden;
+            top: 0%;
+            left: 0%;
+            transition: 0.5s;
+            background-color: #004c6d;
+            z-index: 2;
+            color: aliceblue;
+
+        }
+
+        .humbar a {
+            text-decoration-style: none;
+            text-decoration: none;
+            color: aliceblue;
+            transition: all 0.5s;
+            display: block;
+            border-top: 0.1px #006691 solid;
+            padding: 15px;
+            font-size: 15px;
+      
+        }
+
+        #main,
+        #header {
+            transition: 00.5s;
+        }
+
+        .humbar a:hover {
+            padding: 15px;
+            font-size: 15px;
+            margin-left: 10px;
+            color: #004c6d;
+            background-color: aliceblue;
+            border-radius: 40px;
+            border-top-right-radius: 0px;
+            border-bottom-right-radius: 0px;
+        }
+
+        .progress {
+           
+            background-color: #008fce5c;
+            transition: 0.5s;
+            animation: prog;
+            animation-duration: 0.5s;
+            overflow-y: hidden;
+        }
+        @keyframes prog {
+          0%{position: relative;
+        left: -1000px;
+        visibility: hidden;
+ }
+       
+         100%{position: relative;
+        left: 0px ;
+         
+}
+        
+            
+        }
+
+        .skill {
+            background-color: rgb(116, 194, 92);
+            color: white;
+            padding: 1%;
+            text-align: right;
+            font-size: 20px;
+            border-radius: 15px;
+        }
+
+        .html {
+            width: 0;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="sidenav">
+        <div id="icon" class="humbar">
+            <a href="/ " class="first">DashBoard</a>
+            <a href="/me" class="five">Me</a>
+            <a href="/Country" class="sec">Table</a>
+            <a href="/letmeout" class="six">Logout</a>
+
+        </div>
+    </div>
+    <header id="header">
+        <nav>
+            <ul>
+                <div id="material" style="font-family: 'Oleo Script', cursive; font-size: 25px; color: aliceblue;">
+
+                    <span style="padding-right: 20px;" onclick="clicked()" class="material-icons md-24">menu</span>
+                    Company Name
+                </div>
+                <div style="padding-right:20px;">
+                    <span class="sec">
+                        <span style="color:white ;">{{request.user}}</span>
+                    </span>
+                    <img src="{% static 'p.png' %}" alt="image" class="pro">
+                </div>
+
+            </ul>
+        </nav>
+    </header>
+    <main id="main">
+        <div class="list">
+            <div style="margin-top: 50px; overflow-x:auto;" class="showtable">
+                <table>
+                    <thead>
+                        <tr>
+                            <th class="left">Title</th>
+                            <th>Topic</th>
+                            <th>Country</th>
+                            <th>Region</th>
+                            <th>Source</th>
+                            <th>Pestle</th>
+                            <th class="right">Visit</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for i in all %}
+                        <tr  onclick="showall({{i.relevance}},{{i.likelihood}},{{i.intensity}},{{forloop.counter}})">
+
+                            {% if i.title %}
+                            <td   class="maintd" style="padding:40px ;">{{i.title|slice:"0:50"}}</td>
+                            {% else %}
+                            <td class="maintd" style="padding:40px ;">----</td>
+                            {% endif %}
+
+
+                            {% if i.topic %}
+                            <td class="maintd" style="padding:10px ;">{{i.topic}}</td>
+                            {% else %}
+                            <td class="maintd" style="padding:10px ;">----</td>
+                            {% endif %}
+
+                            {% if i.country %}
+                            <td class="maintd" style="padding:10px ;">{{i.country}}</td>
+                            {% else %}
+                            <td class="maintd" style="padding:10px ;">----</td>
+                            {% endif %}
+
+                            {% if i.region %}
+                            <td class="maintd" style="padding:10px ;">{{i.region}}</td>
+                            {% else %}
+                            <td class="maintd" style="padding:10px ;">----</td>
+                            {% endif %}
+
+                            {% if i.source %}
+                            <td class="maintd" style="padding:10px ;">{{i.source}}</td>
+                            {% else %}
+                            <td class="maintd" style="padding:10px ;">----</td>
+                            {% endif %}
+
+                            {% if i.pestle %}
+                            <td class="maintd" style="padding:10px ;">{{i.pestle}}</td>
+                            {% else %}
+                            <td class="maintd" style="padding:10px ;">----</td>
+                            {% endif %}
+
+
+                            <td class="maintd" style="padding:30px ;"><a role="button" href="{{i.url}}" class="btn"
+                                    target="_blank">Visit</a></td>
+                        </tr>
+                        <tr id="{{forloop.counter}}" style="display:none ;" class="progress">
+                            <td>
+                                
+                            </td>
+                            <td>
+                                
+                            </td>
+                            <td>
+                               
+                            </td>
+                            <td>
+                                <canvas id="Doughnut{{forloop.counter}}" width="400px"></canvas>
+                            </td>
+                            <td>
+                                
+                            </td>
+                            <td>
+                                
+                            </td>
+                            <td>
+                               
+                            </td>
+                        </tr>
+
+                        {% endfor %}
+                    </tbody>
+                </table>
+
+
+            </div>
+        </div>
+    </main>
+
+    <script>
+        function clicked() {
+            document.getElementById("icon").style.width = "15%";
+            var t = document.getElementById("material").innerHTML = "<span  style='padding-right: 20px;' onclick='cld()' class='material-icons md-24'>close</span> Company Name "
+            document.getElementById("header").style.marginLeft = "15%";
+            document.getElementById("main").style.marginLeft = "15%";
+        }
+        function cld() {
+            document.getElementById("icon").style.width = "0%";
+            document.getElementById("header").style.marginLeft = "0%";
+            var t = document.getElementById("material").innerHTML = "<span  style='padding-right: 20px;' onclick='clicked()' class='material-icons md-24'>menu</span>  Company Name"
+            document.getElementById("main").style.marginLeft = "0%";
+        }
+
+        function showall(r, l, i, id) {
+            document.getElementById(id).style.cssText = "display: ;"
+            var f = document.getElementById("Doughnut" + id).getContext("2d");
+            console.log(f)
+            const doughnut = new Chart(f, {
+                type: "doughnut",
+                data: {
+                    labels: ["Relevance", "Likehood", "Intensity"],
+                    datasets: [{
+                        label: 'My First Dataset',
+                        data: [r, l, i],
+                        backgroundColor: [
+                            "#004c6d",
+                            '#006d90',
+                            '#008fb1',
+                            '#00b3cf',
+                            '#00d9e9',
+                            "#00ffff"
+                        ],
+                        hoverOffset: 4
+                    }]
+                }
+            });
+
+        }
+
+        function showtitle(title,id){
+            document.getElementById(id).innerHTML="<td class='maintd' style='padding:40px ;'>{{i.title}}</td>"
+        }
+
+
+
+
+
+    </script>
+</body>
+
+</html>
